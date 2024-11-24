@@ -6,9 +6,9 @@ from .model import Config, Integration
 from .serializer import format_python_namespace
 
 
-def generate_and_validate(integrations: dict[str, Integration]) -> str:
+def generate_and_validate(integrations: dict[str, Integration], config: Config) -> str:
     """Validate and generate application_credentials data."""
-
+    _ = config
     match_list = []
 
     for domain in sorted(integrations):
@@ -28,7 +28,7 @@ def validate(integrations: dict[str, Integration], config: Config) -> None:
         config.root / "homeassistant/generated/application_credentials.py"
     )
     config.cache["application_credentials"] = content = generate_and_validate(
-        integrations
+        integrations, config
     )
 
     if config.specific_integrations:
