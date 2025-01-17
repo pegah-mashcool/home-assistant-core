@@ -39,6 +39,8 @@ from .models import PermRequired, ProtectEntityDescription, ProtectEventMixin
 _KEY_DOOR = "door"
 STATUSLIGHTON="Status light on"
 MDILEDON="mdi:led-on"
+MDICAR="mdi:car"
+
 @dataclasses.dataclass(frozen=True, kw_only=True)
 class ProtectBinaryEntityDescription(
     ProtectEntityDescription, BinarySensorEntityDescription
@@ -164,7 +166,7 @@ CAMERA_SENSORS: tuple[ProtectBinaryEntityDescription, ...] = (
     ProtectBinaryEntityDescription(
         key="smart_vehicle",
         name="Detections: vehicle",
-        icon="mdi:car",
+        icon=MDICAR,
         entity_category=EntityCategory.DIAGNOSTIC,
         ufp_required_field="can_detect_vehicle",
         ufp_value="is_vehicle_detection_on",
@@ -191,7 +193,7 @@ CAMERA_SENSORS: tuple[ProtectBinaryEntityDescription, ...] = (
     ProtectBinaryEntityDescription(
         key="smart_licenseplate",
         name="Detections: license plate",
-        icon="mdi:car",
+        icon=MDICAR,
         entity_category=EntityCategory.DIAGNOSTIC,
         ufp_required_field="can_detect_license_plate",
         ufp_value="is_license_plate_detection_on",
@@ -254,7 +256,7 @@ CAMERA_SENSORS: tuple[ProtectBinaryEntityDescription, ...] = (
     ProtectBinaryEntityDescription(
         key="smart_car_alarm",
         name="Detections: car alarm",
-        icon="mdi:car",
+        icon=MDICAR,
         entity_category=EntityCategory.DIAGNOSTIC,
         ufp_required_field="can_detect_car_alarm",
         ufp_value="is_car_alarm_detection_on",
@@ -454,7 +456,7 @@ EVENT_SENSORS: tuple[ProtectBinaryEventEntityDescription, ...] = (
     ProtectBinaryEventEntityDescription(
         key="smart_obj_vehicle",
         name="Vehicle detected",
-        icon="mdi:car",
+        icon=MDICAR,
         ufp_obj_type=SmartDetectObjectType.VEHICLE,
         ufp_required_field="can_detect_vehicle",
         ufp_enabled="is_vehicle_detection_on",
@@ -544,7 +546,7 @@ EVENT_SENSORS: tuple[ProtectBinaryEventEntityDescription, ...] = (
     ProtectBinaryEventEntityDescription(
         key="smart_audio_car_alarm",
         name="Car alarm detected",
-        icon="mdi:car",
+        icon=MDICAR,
         ufp_obj_type=SmartDetectObjectType.BURGLAR,
         ufp_required_field="can_detect_car_alarm",
         ufp_enabled="is_car_alarm_detection_on",
