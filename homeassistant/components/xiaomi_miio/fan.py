@@ -195,6 +195,9 @@ FAN_DIRECTIONS_MAP = {
     "reverse": "left",
 }
 
+# Defining constants:
+SET_OPERATION_MODE_FAILED: str = "Setting operation mode of the miio device failed."
+
 
 async def async_setup_entry(
     hass: HomeAssistant,
@@ -525,7 +528,7 @@ class XiaomiAirPurifier(XiaomiGenericAirPurifier):
         )
         if speed_mode:
             await self._try_command(
-                "Setting operation mode of the miio device failed.",
+                SET_OPERATION_MODE_FAILED,
                 self._device.set_mode,
                 self.operation_mode_class(self.SPEED_MODE_MAPPING[speed_mode]),
             )
@@ -536,7 +539,7 @@ class XiaomiAirPurifier(XiaomiGenericAirPurifier):
         This method is a coroutine.
         """
         if await self._try_command(
-            "Setting operation mode of the miio device failed.",
+            SET_OPERATION_MODE_FAILED,
             self._device.set_mode,
             self.operation_mode_class[preset_mode],
         ):
@@ -630,7 +633,7 @@ class XiaomiAirPurifierMB4(XiaomiGenericAirPurifier):
     async def async_set_preset_mode(self, preset_mode: str) -> None:
         """Set the preset mode of the fan."""
         if await self._try_command(
-            "Setting operation mode of the miio device failed.",
+            SET_OPERATION_MODE_FAILED,
             self._device.set_mode,
             self.operation_mode_class[preset_mode],
         ):
@@ -713,7 +716,7 @@ class XiaomiAirFresh(XiaomiGenericAirPurifier):
         )
         if speed_mode:
             if await self._try_command(
-                "Setting operation mode of the miio device failed.",
+                SET_OPERATION_MODE_FAILED,
                 self._device.set_mode,
                 AirfreshOperationMode(self.SPEED_MODE_MAPPING[speed_mode]),
             ):
@@ -728,7 +731,7 @@ class XiaomiAirFresh(XiaomiGenericAirPurifier):
         This method is a coroutine.
         """
         if await self._try_command(
-            "Setting operation mode of the miio device failed.",
+            SET_OPERATION_MODE_FAILED,
             self._device.set_mode,
             self.operation_mode_class[preset_mode],
         ):
@@ -816,7 +819,7 @@ class XiaomiAirFreshA1(XiaomiGenericAirPurifier):
     async def async_set_preset_mode(self, preset_mode: str) -> None:
         """Set the preset mode of the fan. This method is a coroutine."""
         if await self._try_command(
-            "Setting operation mode of the miio device failed.",
+            SET_OPERATION_MODE_FAILED,
             self._device.set_mode,
             self.operation_mode_class[preset_mode],
         ):
@@ -1038,7 +1041,7 @@ class XiaomiFanP5(XiaomiGenericFan):
     async def async_set_preset_mode(self, preset_mode: str) -> None:
         """Set the preset mode of the fan."""
         await self._try_command(
-            "Setting operation mode of the miio device failed.",
+            SET_OPERATION_MODE_FAILED,
             self._device.set_mode,
             self.operation_mode_class[preset_mode],
         )
@@ -1094,7 +1097,7 @@ class XiaomiFanMiot(XiaomiGenericFan):
     async def async_set_preset_mode(self, preset_mode: str) -> None:
         """Set the preset mode of the fan."""
         await self._try_command(
-            "Setting operation mode of the miio device failed.",
+            SET_OPERATION_MODE_FAILED,
             self._device.set_mode,
             self.operation_mode_class[preset_mode],
         )
