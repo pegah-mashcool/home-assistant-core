@@ -243,7 +243,7 @@ class AbstractOAuth2FlowHandler(config_entries.ConfigFlow, metaclass=ABCMeta):
             )
 
         self.external_data: Any = None
-        self.flow_impl: AbstractOAuth2Implementation = None  # type: ignore[assignment]
+        self.flow_impl: AbstractOAuth2Implementation | None = None
 
     @property
     @abstractmethod
@@ -257,6 +257,8 @@ class AbstractOAuth2FlowHandler(config_entries.ConfigFlow, metaclass=ABCMeta):
 
     async def async_generate_authorize_url(self) -> str:
         """Generate a url for the user to authorize."""
+
+        assert self.flow_impl is not None
         url = await self.flow_impl.async_generate_authorize_url(self.flow_id)
         return str(URL(url).update_query(self.extra_authorize_data))
 
@@ -327,6 +329,8 @@ class AbstractOAuth2FlowHandler(config_entries.ConfigFlow, metaclass=ABCMeta):
         """Create config entry from external data."""
         _LOGGER.debug("Creating config entry from external data")
 
+        assert self.flow_impl is not None
+
         try:
             async with asyncio.timeout(OAUTH_TOKEN_TIMEOUT_SEC):
                 token = await self.flow_impl.async_resolve_external_data(
@@ -378,6 +382,8 @@ class AbstractOAuth2FlowHandler(config_entries.ConfigFlow, metaclass=ABCMeta):
 
         Ok to override if you want to fetch extra info or even add another step.
         """
+
+        assert self.flow_impl is not None
         return self.async_create_entry(title=self.flow_impl.name, data=data)
 
     async def async_step_user(
