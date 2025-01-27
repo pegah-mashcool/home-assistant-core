@@ -39,7 +39,11 @@ from .models import PermRequired, ProtectEntityDescription, ProtectEventMixin
 _KEY_DOOR = "door"
 STATUSLIGHTON="Status light on"
 MDILEDON="mdi:led-on"
+
 MDICAR="mdi:car"
+
+MDIFULLSCREEN="mdi:fullscreen"
+
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
 class ProtectBinaryEntityDescription(
@@ -118,7 +122,7 @@ CAMERA_SENSORS: tuple[ProtectBinaryEntityDescription, ...] = (
     ProtectBinaryEntityDescription(
         key="osd_name",
         name="Overlay: show name",
-        icon="mdi:fullscreen",
+        icon=MDIFULLSCREEN,
         entity_category=EntityCategory.DIAGNOSTIC,
         ufp_value="osd_settings.is_name_enabled",
         ufp_perm=PermRequired.NO_WRITE,
@@ -126,7 +130,7 @@ CAMERA_SENSORS: tuple[ProtectBinaryEntityDescription, ...] = (
     ProtectBinaryEntityDescription(
         key="osd_date",
         name="Overlay: show date",
-        icon="mdi:fullscreen",
+        icon=MDIFULLSCREEN,
         entity_category=EntityCategory.DIAGNOSTIC,
         ufp_value="osd_settings.is_date_enabled",
         ufp_perm=PermRequired.NO_WRITE,
@@ -134,7 +138,7 @@ CAMERA_SENSORS: tuple[ProtectBinaryEntityDescription, ...] = (
     ProtectBinaryEntityDescription(
         key="osd_logo",
         name="Overlay: show logo",
-        icon="mdi:fullscreen",
+        icon=MDIFULLSCREEN,
         entity_category=EntityCategory.DIAGNOSTIC,
         ufp_value="osd_settings.is_logo_enabled",
         ufp_perm=PermRequired.NO_WRITE,
@@ -142,7 +146,7 @@ CAMERA_SENSORS: tuple[ProtectBinaryEntityDescription, ...] = (
     ProtectBinaryEntityDescription(
         key="osd_bitrate",
         name="Overlay: show bitrate",
-        icon="mdi:fullscreen",
+        icon=MDIFULLSCREEN,
         entity_category=EntityCategory.DIAGNOSTIC,
         ufp_value="osd_settings.is_debug_enabled",
         ufp_perm=PermRequired.NO_WRITE,
